@@ -45,5 +45,6 @@ class UserProfileView(APIView):
         else: 
             return JsonResponse({
                 'status_code': 400,
-                'message': 'Invalid request fields'
+                'message': 'Invalid request fields',
+                'error': serialized_data.errors
             })

@@ -7,7 +7,9 @@ class UserProfileSerializer(serializers.ModelSerializer):
         model = UserProfile
         fields = '__all__'
 
-    def age_validate(self, data):
-        age = data.get('age')
-        if age < 12 or age > 60:
-            raise serializers.ValidationError('Invalid Age, it must be between 12 to 60 years.')
+    def validate_age(self, value):
+        if value < 12 or value > 60:
+            raise serializers.ValidationError(
+                'Invalid age. It must be between 12 and 60 years.'
+            )
+        return value
